@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		.btn{
+			width: 200px;
+			padding: 15px 32px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<h2>DomoTiti</h1>
+			<p>Controlador de luces</p>
+		</div>
+		<div class="row">
+			<div class="col-md-3 col-md-offset-3">
+				<p> <h3> Luz número 1 </h3>
+				<p> <button id="b_on"   onClick="onLed(13)" type="button" class="btn btn-lg btn-default">Apagar luz 1</button>
+				<p> <button id="b_off"  onClick="offLed(13)" type="button" class="btn btn-lg btn-default">Encender luz 1</button>
+				<p> <button id="b_azul" onClick="cambiaAzul(13)" type="button" class="btn btn-lg btn-primary">Parpadear luz 1</button>
+			</div>
+			<div class="col-md-3">
+				<p> <h3> Luz número 2 </h3>
+      				<p> <button id="b_azul2" onClick="cambiaAzul(12)" type="button" class="btn btn-lg btn-primary">Blink</button>
+		       		<p> <button id="b_off2" onClick="offLed(12)" type="button" class="btn btn-lg btn-default">Led ON</button>
+		       		<p> <button id="b_on2" onClick="onLed(12)" type="button" class="btn btn-lg btn-default">Led OFF</button>
+			</div>			
+		</div>
+	</div>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<script src="app.js"></script>
+	<script>
+		var socket = io();
+
+		function cambiaAzul(light_id){
+			socket.emit('off',light_id);
+		}
+		function offLed(light_id){
+			
+			socket.emit('off',light_id);
+		}
+		function onLed(light_id){	
+			socket.emit('on',light_id);
+		}
+
+	</script>
+</body>
+</html>
